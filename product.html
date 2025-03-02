@@ -35,7 +35,11 @@
                 <h2 id="product-name"></h2>
                 <p class="description" id="product-description"></p>
                 <p class="specs" id="product-specs"></p>
-                <p class="info" id="product-info"></p>
+                <p class="info" id="product-info-length"></p>
+                <p class="info" id="product-info-radius"></p>
+                <p class="info" id="product-info-tip"></p>
+                <p class="info" id="product-info-waist"></p>
+                <p class="info" id="product-info-tail"></p>
             </div>
         </div>
     </section>
@@ -69,7 +73,11 @@
                     document.getElementById('product-name').textContent = product.name;
                     document.getElementById('product-description').textContent = product.description;
                     document.getElementById('product-specs').textContent = product.specs;
-                    document.getElementById('product-info').textContent = product.info;
+                    document.getElementById('product-info-length').textContent = "Length (cm): " + product.info.length;
+                    document.getElementById('product-info-radius').textContent = "Radius (m): " + product.info.radius;
+                    document.getElementById('product-info-tip').textContent = "Tip (mm): " + product.info.tip;
+                    document.getElementById('product-info-waist').textContent = "Waist (mm): " + product.info.waist;
+                    document.getElementById('product-info-tail').textContent = "Tail (mm): " + product.info.tail;
                     document.getElementById('product-image').src = product.image;
                 } else {
                     document.getElementById('product-name').textContent = 'Product Not Found';

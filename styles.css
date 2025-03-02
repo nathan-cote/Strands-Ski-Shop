@@ -23,7 +23,6 @@ header {
     color: #fff;
     padding: 0.5rem 0; /* Reduced padding to accommodate larger logo */
     position: sticky;
-    top: 0;
     z-index: 1000;
 }
 
@@ -53,9 +52,8 @@ header h1 {
 
 nav ul {
     list-style: none;
-    padding: 0;
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 nav a {
@@ -141,8 +139,13 @@ nav a {
 /* About Us */
 .about {
     background-color: #f4f4f4;
-    padding: 3rem 0;
+    padding: 1rem 0;
     text-align: center;
+}
+
+.about img {
+    max-width: 20rem;
+    border-radius: 10px;
 }
 
 /* Contact */
@@ -190,19 +193,6 @@ footer a {
     color: #fff;
     text-decoration: none;
 }
-
-
-/* About Us Page */
-.about ul {
-    list-style-type: disc;
-    margin-left: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-.about ul li {
-    margin-bottom: 0.5rem;
-}
-
 
 /* Contact Us Page */
 .contact .store-info {
