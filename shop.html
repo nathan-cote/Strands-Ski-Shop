@@ -57,9 +57,11 @@
                             <a href="product.html?id=${product.id}">
                                 <img src="${product.image}" alt="${product.name}">
                                 <h3>${product.name}</h3>
-                                <p>${product.description}</p>
-                                <p>${product.specs}</p>
-                                <p>${product.info}</p>
+                                <p>Length (cm): ${product.info.length}</p>
+                                <p>Radius (m): ${product.info.radius}</p>
+                                <p>Tip: (mm): ${product.info.tip}</p>
+                                <p>Waist (mm): ${product.info.waist}</p>
+                                <p>Tail (mm): ${product.info.tail}</p>
                             </a>
                         </div>
                     `;
