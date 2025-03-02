@@ -25,12 +25,75 @@
         </div>
     </header>
 
+    <!-- Title -->
+    <h2 class="page-title">Shop</h2>
+
     <!-- Shop Grid -->
-    <section class="shop-grid">
-        <div class="container" id="product-container">
-            <!-- Products will be dynamically inserted here -->
+    <div class="shop-grid">
+        <div class="container">
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search products by name...">
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="brand-filter">Filter by Brand:</label>
+                    <select id="brand-filter">
+                        <option value="">All Brands</option>
+                        <!-- Brands will be dynamically populated here -->
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="length-filter">Filter by Length (cm):</label>
+                    <select id="length-filter">
+                        <option value="">All Lengths</option>
+                        <!-- Lengths will be dynamically populated here -->
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="radius-filter">Filter by Radius (m):</label>
+                    <select id="radius-filter">
+                        <option value="">All Radii</option>
+                        <!-- Radii will be dynamically populated here -->
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="waist-filter">Filter by Waist (mm):</label>
+                    <select id="waist-filter">
+                        <option value="">All Waists</option>
+                        <!-- Waists will be dynamically populated here -->
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="tail-filter">Filter by Tail (mm):</label>
+                    <select id="tail-filter">
+                        <option value="">All Tails</option>
+                        <!-- Tails will be dynamically populated here -->
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="tip-filter">Filter by Tip (mm):</label>
+                    <select id="tip-filter">
+                        <option value="">All Tips</option>
+                        <!-- Tips will be dynamically populated here -->
+                    </select>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="product-container">
+                <!-- Products will be dynamically inserted here -->
+            </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -49,24 +112,120 @@
             .then(response => response.json())
             .then(products => {
                 const productContainer = document.getElementById('product-container');
+                const searchInput = document.getElementById('search-input');
+                const brandFilter = document.getElementById('brand-filter');
+                const lengthFilter = document.getElementById('length-filter');
+                const radiusFilter = document.getElementById('radius-filter');
+                const waistFilter = document.getElementById('waist-filter');
+                const tailFilter = document.getElementById('tail-filter');
+                const tipFilter = document.getElementById('tip-filter');
 
-                // Loop through products and create HTML for each
-                products.forEach(product => {
-                    const productHTML = `
-                        <div class="product">
-                            <a href="product.html?id=${product.id}">
-                                <img src="${product.image}" alt="${product.name}">
-                                <h3>${product.name}</h3>
-                                <p>Length (cm): ${product.info.length}</p>
-                                <p>Radius (m): ${product.info.radius}</p>
-                                <p>Tip: (mm): ${product.info.tip}</p>
-                                <p>Waist (mm): ${product.info.waist}</p>
-                                <p>Tail (mm): ${product.info.tail}</p>
-                            </a>
-                        </div>
-                    `;
-                    productContainer.innerHTML += productHTML;
-                });
+                // Function to display products
+                const displayProducts = (productsToDisplay) => {
+                    productContainer.innerHTML = ''; // Clear current products
+                    productsToDisplay.forEach(product => {
+                        const productHTML = `
+                            <div class="product">
+                                <a href="product.html?id=${product.id}">
+                                    <img src="${product.image}" alt="${product.name}">
+                                    <h3>${product.name}</h3>
+                                    <p>Brand: ${product.brand}</p>
+                                    <p>Length (cm): ${product.info.length}</p>
+                                    <p>Radius (m): ${product.info.radius}</p>
+                                    <p>Waist (mm): ${product.info.waist}</p>
+                                    <p>Tail (mm): ${product.info.tail}</p>
+                                    <p>Tip (mm): ${product.info.tip}</p>
+                                </a>
+                            </div>
+                        `;
+                        productContainer.innerHTML += productHTML;
+                    });
+                };
+
+                // Function to populate filter options
+                const populateFilters = (products) => {
+                    // Brands (alphabetical order)
+                    const brands = [...new Set(products.map(product => product.brand))];
+                    brands.sort((a, b) => a.localeCompare(b)); // Sort alphabetically
+                    brands.forEach(brand => {
+                        brandFilter.innerHTML += `<option value="${brand}">${brand}</option>`;
+                    });
+
+                    // Lengths (numerical order)
+                    const lengths = [...new Set(products.flatMap(product => product.info.length.split(', ')))];
+                    lengths.sort((a, b) => a - b); // Sort numerically
+                    lengths.forEach(length => {
+                        lengthFilter.innerHTML += `<option value="${length}">${length}</option>`;
+                    });
+
+                    // Radii (numerical order)
+                    const radii = [...new Set(products.flatMap(product => product.info.radius.split(', ')))];
+                    radii.sort((a, b) => a - b); // Sort numerically
+                    radii.forEach(radius => {
+                        radiusFilter.innerHTML += `<option value="${radius}">${radius}</option>`;
+                    });
+
+                    // Waists (numerical order)
+                    const waists = [...new Set(products.flatMap(product => product.info.waist.split(', ')))];
+                    waists.sort((a, b) => a - b); // Sort numerically
+                    waists.forEach(waist => {
+                        waistFilter.innerHTML += `<option value="${waist}">${waist}</option>`;
+                    });
+
+                    // Tails (numerical order)
+                    const tails = [...new Set(products.flatMap(product => product.info.tail.split(', ')))];
+                    tails.sort((a, b) => a - b); // Sort numerically
+                    tails.forEach(tail => {
+                        tailFilter.innerHTML += `<option value="${tail}">${tail}</option>`;
+                    });
+
+                    // Tips (numerical order)
+                    const tips = [...new Set(products.flatMap(product => product.info.tip.split(', ')))];
+                    tips.sort((a, b) => a - b); // Sort numerically
+                    tips.forEach(tip => {
+                        tipFilter.innerHTML += `<option value="${tip}">${tip}</option>`;
+                    });
+                };
+
+                // Function to filter products
+                const filterProducts = () => {
+                    const searchTerm = searchInput.value.toLowerCase();
+                    const selectedBrand = brandFilter.value;
+                    const selectedLength = lengthFilter.value;
+                    const selectedRadius = radiusFilter.value;
+                    const selectedWaist = waistFilter.value;
+                    const selectedTail = tailFilter.value;
+                    const selectedTip = tipFilter.value;
+
+                    const filteredProducts = products.filter(product => {
+                        const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+                        const matchesBrand = selectedBrand ? product.brand === selectedBrand : true;
+                        const matchesLength = selectedLength ? product.info.length.includes(selectedLength) : true;
+                        const matchesRadius = selectedRadius ? product.info.radius.includes(selectedRadius) : true;
+                        const matchesWaist = selectedWaist ? product.info.waist.includes(selectedWaist) : true;
+                        const matchesTail = selectedTail ? product.info.tail.includes(selectedTail) : true;
+                        const matchesTip = selectedTip ? product.info.tip.includes(selectedTip) : true;
+
+                        return matchesSearch && matchesBrand && matchesLength && matchesRadius && matchesWaist && matchesTail && matchesTip;
+                    });
+
+                    displayProducts(filteredProducts);
+                };
+
+                // Display all products initially
+                displayProducts(products);
+
+                // Populate filter options
+                populateFilters(products);
+
+                // Add event listeners for filters and search input
+                searchInput.addEventListener('input', filterProducts);
+                brandFilter.addEventListener('change', filterProducts);
+                lengthFilter.addEventListener('change', filterProducts);
+                radiusFilter.addEventListener('change', filterProducts);
+                waistFilter.addEventListener('change', filterProducts);
+                tailFilter.addEventListener('change', filterProducts);
+                tipFilter.addEventListener('change', filterProducts);
             })
             .catch(error => console.error('Error loading products:', error));
     </script>

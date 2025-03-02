@@ -10,7 +10,8 @@
             "tip": "128",
             "waist": "88",
             "tail": "110"
-        },  
+        },
+        "brand": "Blizzard",
         "image": "images/skis/blizzard_brahma_88.webp"
     },
     {
@@ -25,6 +26,7 @@
             "waist": "88, 89, 90, 90",
             "tail": "108, 109, 110, 110"
         },
+        "brand": "Dynastar",
         "image": "images/skis/dynastar_m-pro_90.webp"
     },
     {
@@ -39,6 +41,7 @@
             "waist": "88, 89, 90, 90",
             "tail": "108, 109, 110, 110"
         },
+        "brand": "Nordica",
         "image": "images/skis/nordica_enforcer_100.webp"
     }
 ]
