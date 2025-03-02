@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon", href="images/icon.jpg">
+    <title>Strand's Ski Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Strands Ski Shop Logo" class="logo">
+                <h1>Strand's Ski Shop</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Your Adventure Starts Here</h2>
+            <p>Explore our premium collection of skiing gear and apparel.</p>
+            <a href="shop.html" class="btn">Shop Now</a> <!-- Link to Shop Page -->
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="shop" class="products">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="product-grid">
+                <div class="product">
+                    <a href="product.html?id=blizzard-hustle-9-2024">
+                        <img src="images/blizzard_hustle_9-2024.jpg" alt="Blizzard Hustle 9 2024">
+                        <h3>Blizzard Hustle 9 2024</h3>
+                        <p>$749.95</p>
+                    </a>
+                </div>
+                <div class="product">
+                    <a href="product.html?id=blizzard-brahma-88-2024">
+                        <img src="images/blizzard_brahma_88-2024.jpg" alt="Blizzard Brahma 88 2024">
+                        <h3>Blizzard Brahma 88 2024</h3>
+                        <p>$699.95</p>
+                    </a>
+                </div>
+                <div class="product">
+                    <a href="product.html?id=atomic-redsters-2025">
+                        <img src="images/atomic_redsters-2025.jpg" alt="Atomic Redsters 2025">
+                        <h3>Atomic Redsters 2025</h3>
+                        <p>$699.95</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Strand's Ski Shop in Worcester, MA has a huge selection of ski and snowboard equipment and accessories, ski apparel, helmets, boots, bindings and more. Our experienced and trained staff also offer a variety of services including expert custom boot fitting, tune-ups, binding mounting and repairs.</p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form action="https://formspree.io/f/your-email-here" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Strand's Ski Shop. All rights reserved.</p>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+[
+    {
+        "id": "blizzard-hustle-9-2024",
+        "name": "Blizzard Hustle 9 2024",
+        "price": "$749.95",
+        "description": "High-performance skis designed for advanced skiers. Perfect for all mountain conditions.",
+        "image": "images/blizzard_hustle_9-2024.jpg"
+    },
+    {
+        "id": "blizzard-brahma-88-2024",
+        "name": "Blizzard Brahma 88 2024",
+        "price": "$699.95",
+        "description": "Versatile skis for all-mountain performance, ideal for intermediate to advanced skiers.",
+        "image": "images/blizzard_brahma_88-2024.jpg"
+    },
+    {
+        "id": "atomic-redsters-2025",
+        "name": "Atomic Redsters 2025",
+        "price": "$699.95",
+        "description": "Race-ready skis for competitive skiers, offering precision and speed.",
+        "image": "images/atomic_redsters-2025.jpg"
+    }
+]
