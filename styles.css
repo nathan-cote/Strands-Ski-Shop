@@ -68,7 +68,7 @@ nav a {
 /* Hero Section */
 .hero {
     position: relative;
-    background-image: url('images/hero.jpg');
+    background-image: url('images/hero.webp');
     background-size: cover;
     background-position: center;
     color: #fff;
