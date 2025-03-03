@@ -413,7 +413,6 @@ footer ul {
 
 
 
-
 /* Mobile Support (Media Queries) */
 @media only screen and (max-width: 768px) {
     /* Adjust header for mobile */
@@ -437,9 +436,10 @@ footer ul {
     }
 
     nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-direction: row; /* Keep navigation links horizontal */
+        gap: 1rem; /* Add some spacing between links */
         padding: 0;
+        justify-content: center; /* Center the navigation links */
     }
 
     nav a {
@@ -460,18 +460,43 @@ footer ul {
     }
 
     /* Category tabs adjustments */
+    .category-tabs {
+        overflow-x: auto; /* Allow horizontal scrolling */
+        padding-bottom: 0.5rem; /* Add some padding for scrollbar */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+
     .tab-nav {
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-direction: row; /* Keep tabs horizontal */
+        gap: 0.5rem; /* Add some spacing between tabs */
+        padding: 0 1rem; /* Add padding to prevent cutting off */
+        white-space: nowrap; /* Prevent text from wrapping */
+        min-width: max-content; /* Ensure the tabs don't collapse */
     }
 
     .tab-nav a {
         padding: 0.5rem;
+        white-space: nowrap; /* Prevent text from wrapping */
+        display: inline-block; /* Ensure tabs stay in a single line */
+    }
+
+    /* Search bar adjustments */
+    .search-bar {
+        padding: 0 1rem; /* Add padding to prevent overflow */
+    }
+
+    .search-bar input {
+        width: calc(100% - 2rem); /* Adjust width to fit within the screen */
+        max-width: 100%; /* Ensure it doesn't exceed the screen width */
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
     }
 
     /* Filters adjustments */
     .filters {
-        flex-direction: column;
+        flex-direction: column; /* Stack filters vertically */
         gap: 1rem;
     }
 
@@ -515,24 +540,26 @@ footer ul {
         font-size: 1rem;
     }
 
-    /* Back button adjustments */
+    /* Hide back button on mobile */
     .back-button {
-        top: 100px; /* Adjust position for mobile */
-        right: 20px; /* Adjust position for mobile */
-    }
-
-    .btn-back {
-        padding: 0.5rem;
-        font-size: 0.9rem;
+        display: none; /* Hide the back button on mobile */
     }
 
     /* Footer adjustments */
     footer ul {
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-direction: row; /* Keep social icons horizontal */
+        gap: 1rem; /* Add some spacing between icons */
+        justify-content: center; /* Center the social icons */
     }
 
     .socials {
         width: 25px; /* Smaller social icons for mobile */
+    }
+
+    /* Embedded map adjustments */
+    iframe {
+        width: 100%; /* Make the map responsive */
+        height: 300px; /* Adjust height for mobile */
+        border-radius: 10px;
     }
 }
