@@ -30,14 +30,16 @@ header {
 header .container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* Space between logo and nav */
     height: 60px; /* Fixed header height */
+    padding: 0 20px; /* Add padding to the container */
 }
 
 .logo-container {
     display: flex;
     align-items: center;
     gap: 10px; /* Space between logo and text */
+    margin-left: -10px; /* Move logo and name further to the left */
 }
 
 .logo {
@@ -54,7 +56,9 @@ header h1 {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 2rem; /* Space between navigation links */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
 }
 
 nav a {
