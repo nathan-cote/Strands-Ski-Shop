@@ -28,17 +28,32 @@
     <!-- Title -->
     <h2 class="page-title">Shop</h2>
 
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+        <div class="container">
+            <ul class="tab-nav">
+                <li><a href="#" class="tab-link active" data-category="all">All</a></li>
+                <li><a href="#" class="tab-link" data-category="ski">Skis</a></li>
+                <li><a href="#" class="tab-link" data-category="poles">Poles</a></li>
+                <li><a href="#" class="tab-link" data-category="bindings">Bindings</a></li>
+                <li><a href="#" class="tab-link" data-category="accessories">Accessories</a></li>
+                <li><a href="#" class="tab-link" data-category="tuning">Tuning Supplies</a></li>
+                <li><a href="#" class="tab-link" data-category="cross-country">Cross Country</a></li>
+                <li><a href="#" class="tab-link" data-category="snowshoes">Snowshoes</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Shop Grid -->
     <div class="shop-grid">
         <div class="container">
-
             <!-- Search Bar -->
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="Search products by name...">
             </div>
 
-            <!-- Filters -->
-            <div class="filters">
+            <!-- Filters (Only for Skis) -->
+            <div class="filters" id="ski-filters">
                 <div class="filter-group">
                     <label for="brand-filter">Filter by Brand:</label>
                     <select id="brand-filter">
@@ -119,27 +134,38 @@
                 const waistFilter = document.getElementById('waist-filter');
                 const tailFilter = document.getElementById('tail-filter');
                 const tipFilter = document.getElementById('tip-filter');
+                const skiFilters = document.getElementById('ski-filters');
+                const tabLinks = document.querySelectorAll('.tab-link');
 
                 // Function to display products
                 const displayProducts = (productsToDisplay) => {
                     productContainer.innerHTML = ''; // Clear current products
-                    productsToDisplay.forEach(product => {
-                        const productHTML = `
-                            <div class="product">
-                                <a href="product.html?id=${product.id}">
-                                    <img src="${product.image}" alt="${product.name}">
-                                    <h3>${product.name}</h3>
-                                    <p>Brand: ${product.brand}</p>
-                                    <p>Length (cm): ${product.info.length}</p>
-                                    <p>Radius (m): ${product.info.radius}</p>
-                                    <p>Waist (mm): ${product.info.waist}</p>
-                                    <p>Tail (mm): ${product.info.tail}</p>
-                                    <p>Tip (mm): ${product.info.tip}</p>
-                                </a>
-                            </div>
-                        `;
-                        productContainer.innerHTML += productHTML;
-                    });
+
+                    if (productsToDisplay.length === 0) {
+                        // Display a message if no products are found
+                        productContainer.innerHTML = `<p class="no-products">No products found.</p>`;
+                    } else {
+                        // Display products
+                        productsToDisplay.forEach(product => {
+                            const productHTML = `
+                                <div class="product">
+                                    <a href="product.html?id=${product.id}">
+                                        <img src="${product.image}" alt="${product.name}">
+                                        <h3>${product.name}</h3>
+                                        <p>Brand: ${product.brand}</p>
+                                        ${product.type === 'ski' ? `
+                                            <p>Length (cm): ${product.info.length}</p>
+                                            <p>Radius (m): ${product.info.radius}</p>
+                                            <p>Waist (mm): ${product.info.waist}</p>
+                                            <p>Tail (mm): ${product.info.tail}</p>
+                                            <p>Tip (mm): ${product.info.tip}</p>
+                                        ` : ''}
+                                    </a>
+                                </div>
+                            `;
+                            productContainer.innerHTML += productHTML;
+                        });
+                    }
                 };
 
                 // Function to populate filter options
@@ -152,35 +178,35 @@
                     });
 
                     // Lengths (numerical order)
-                    const lengths = [...new Set(products.flatMap(product => product.info.length.split(', ')))];
+                    const lengths = [...new Set(products.flatMap(product => product.type === 'ski' ? product.info.length.split(', ') : []))];
                     lengths.sort((a, b) => a - b); // Sort numerically
                     lengths.forEach(length => {
                         lengthFilter.innerHTML += `<option value="${length}">${length}</option>`;
                     });
 
                     // Radii (numerical order)
-                    const radii = [...new Set(products.flatMap(product => product.info.radius.split(', ')))];
+                    const radii = [...new Set(products.flatMap(product => product.type === 'ski' ? product.info.radius.split(', ') : []))];
                     radii.sort((a, b) => a - b); // Sort numerically
                     radii.forEach(radius => {
                         radiusFilter.innerHTML += `<option value="${radius}">${radius}</option>`;
                     });
 
                     // Waists (numerical order)
-                    const waists = [...new Set(products.flatMap(product => product.info.waist.split(', ')))];
+                    const waists = [...new Set(products.flatMap(product => product.type === 'ski' ? product.info.waist.split(', ') : []))];
                     waists.sort((a, b) => a - b); // Sort numerically
                     waists.forEach(waist => {
                         waistFilter.innerHTML += `<option value="${waist}">${waist}</option>`;
                     });
 
                     // Tails (numerical order)
-                    const tails = [...new Set(products.flatMap(product => product.info.tail.split(', ')))];
+                    const tails = [...new Set(products.flatMap(product => product.type === 'ski' ? product.info.tail.split(', ') : []))];
                     tails.sort((a, b) => a - b); // Sort numerically
                     tails.forEach(tail => {
                         tailFilter.innerHTML += `<option value="${tail}">${tail}</option>`;
                     });
 
                     // Tips (numerical order)
-                    const tips = [...new Set(products.flatMap(product => product.info.tip.split(', ')))];
+                    const tips = [...new Set(products.flatMap(product => product.type === 'ski' ? product.info.tip.split(', ') : []))];
                     tips.sort((a, b) => a - b); // Sort numerically
                     tips.forEach(tip => {
                         tipFilter.innerHTML += `<option value="${tip}">${tip}</option>`;
@@ -196,20 +222,38 @@
                     const selectedWaist = waistFilter.value;
                     const selectedTail = tailFilter.value;
                     const selectedTip = tipFilter.value;
+                    const selectedCategory = document.querySelector('.tab-link.active').dataset.category;
 
                     const filteredProducts = products.filter(product => {
                         const matchesSearch = product.name.toLowerCase().includes(searchTerm);
                         const matchesBrand = selectedBrand ? product.brand === selectedBrand : true;
-                        const matchesLength = selectedLength ? product.info.length.includes(selectedLength) : true;
-                        const matchesRadius = selectedRadius ? product.info.radius.includes(selectedRadius) : true;
-                        const matchesWaist = selectedWaist ? product.info.waist.includes(selectedWaist) : true;
-                        const matchesTail = selectedTail ? product.info.tail.includes(selectedTail) : true;
-                        const matchesTip = selectedTip ? product.info.tip.includes(selectedTip) : true;
+                        const matchesLength = selectedCategory === 'ski' && selectedLength ? product.info.length.includes(selectedLength) : true;
+                        const matchesRadius = selectedCategory === 'ski' && selectedRadius ? product.info.radius.includes(selectedRadius) : true;
+                        const matchesWaist = selectedCategory === 'ski' && selectedWaist ? product.info.waist.includes(selectedWaist) : true;
+                        const matchesTail = selectedCategory === 'ski' && selectedTail ? product.info.tail.includes(selectedTail) : true;
+                        const matchesTip = selectedCategory === 'ski' && selectedTip ? product.info.tip.includes(selectedTip) : true;
+                        const matchesCategory = selectedCategory === 'all' ? true : product.type === selectedCategory;
 
-                        return matchesSearch && matchesBrand && matchesLength && matchesRadius && matchesWaist && matchesTail && matchesTip;
+                        return matchesSearch && matchesBrand && matchesLength && matchesRadius && matchesWaist && matchesTail && matchesTip && matchesCategory;
                     });
 
                     displayProducts(filteredProducts);
+                };
+
+                // Function to handle tab clicks
+                const handleTabClick = (event) => {
+                    event.preventDefault();
+                    tabLinks.forEach(link => link.classList.remove('active'));
+                    event.target.classList.add('active');
+
+                    // Show/hide ski filters based on the selected tab
+                    if (event.target.dataset.category === 'ski') {
+                        skiFilters.style.display = 'flex';
+                    } else {
+                        skiFilters.style.display = 'none';
+                    }
+
+                    filterProducts();
                 };
 
                 // Display all products initially
@@ -226,6 +270,9 @@
                 waistFilter.addEventListener('change', filterProducts);
                 tailFilter.addEventListener('change', filterProducts);
                 tipFilter.addEventListener('change', filterProducts);
+
+                // Add event listeners for tab clicks
+                tabLinks.forEach(link => link.addEventListener('click', handleTabClick));
             })
             .catch(error => console.error('Error loading products:', error));
     </script>
