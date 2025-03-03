@@ -426,13 +426,8 @@ footer ul {
         padding: 1rem 0;
     }
 
-    .logo-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
     .logo {
-        height: 80px; /* Slightly smaller logo for mobile */
+        display: none; /* Hide the logo on mobile */
     }
 
     header h1 {
