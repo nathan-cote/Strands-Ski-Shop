@@ -168,13 +168,12 @@ nav a {
 }
 
 /* Footer */
-/* Footer */
 footer {
     background-color: #2c3e50;
     color: #fff;
     padding: 1rem 0;
     text-align: center;
-    margin-top: auto; /* Push the footer to the bottom */
+    margin-bottom: -100px;
 }
 
 footer ul {
